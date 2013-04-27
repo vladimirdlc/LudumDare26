@@ -20,8 +20,4 @@ public class IncreaseDecrease : MonoBehaviour {
         if (destroyOnMax && transform.localScale.magnitude >= maxMagnitude) Destroy(gameObject); 
 	}
 
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject);
-    }
 }
