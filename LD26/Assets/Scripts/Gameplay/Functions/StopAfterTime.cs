@@ -1,11 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class GravityAfterTime : MonoBehaviour
+public class StopAfterTime : MonoBehaviour
 {
     private float currentTimeAlive;
     public float afterTime = 5.0f;
-    public bool isInFutureGravitable = false;
 
     void Update()
     {
@@ -13,7 +12,8 @@ public class GravityAfterTime : MonoBehaviour
 
         if (currentTimeAlive > afterTime)
         {
-            rigidbody.useGravity = true;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.useGravity = false;
             Destroy(this);
         }
     }
