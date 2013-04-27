@@ -4,15 +4,16 @@ using System.Collections;
 public class PullerPusher : MonoBehaviour
 {
     private float currentElapsedTime;
-    public float applyForceInSeconds = 0.1f;
+    public float applyForceInSeconds = 0.0f;
     public float power = 500.0f;
     public Transform basePosition;
     public bool isMagnitudeRelative = true;
     public bool isPullingToCenter = false;
+    private bool isPassed = false;
 
     void OnTriggerStay(Collider other)
     {
-        if (currentElapsedTime >= applyForceInSeconds)
+        if (!isPassed && currentElapsedTime >= applyForceInSeconds)
         {
             Vector3 pullVector;
 
@@ -24,6 +25,11 @@ public class PullerPusher : MonoBehaviour
 
             currentElapsedTime = 0;
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        other.rigidbody.velocity = Vector3.zero;
     }
 
     void FixedUpdate()
