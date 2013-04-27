@@ -22,21 +22,29 @@ public class Shooter : MonoBehaviour {
 		if(!isShooting)
 		{
 			if(Input.GetMouseButtonDown(fireButton)) isCharging = true;
-			else if(Input.GetMouseButtonDown(fireButton)) 
+			else if(Input.GetMouseButtonUp(fireButton)) 
 			{
 				isCharging = false;
-				//shoot
+				StartCoroutine(shoot(shootPower));
 				shootPower = 0;
 				chargerMaterial.color = Color.white;
 			}
-			
-			if(isCharging)
-			{
-				shootPower += Time.deltaTime * chargeSpeed;
-				shootPower = Mathf.Clamp(shootPower, noCharge, fullCharge);
-				chargeColor = shootPower/fullCharge;
-				chargerMaterial.color = Color.Lerp(Color.white, Color.red, chargeColor);
-			}
 		}
+			
+		if(isCharging)
+		{
+			shootPower += Time.deltaTime * chargeSpeed;
+			shootPower = Mathf.Clamp(shootPower, noCharge, fullCharge);
+			chargeColor = shootPower/fullCharge;
+			chargerMaterial.color = Color.Lerp(Color.white, Color.red, chargeColor);
+		}
+	}
+	
+	IEnumerator shoot(float firePower) {
+		isShooting = true;
+		GameObject clone = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+		clone.rigidbody.AddForce(clone.transform.forward * firePower);
+		yield return null;
+		isShooting = false;
 	}
 }
