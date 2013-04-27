@@ -17,6 +17,11 @@ public class IncreaseDecrease : MonoBehaviour {
         isIncreasing = (isIncreasing ? transform.localScale.magnitude < maxMagnitude : transform.localScale.magnitude <= minMagnitude);
 
         if (destroyOnMin && transform.localScale.magnitude <= minMagnitude) Destroy(gameObject);
-        if (destroyOnMax && transform.localScale.magnitude >= maxMagnitude) Destroy(gameObject);
+        if (destroyOnMax && transform.localScale.magnitude >= maxMagnitude) Destroy(gameObject); 
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject);
+    }
 }
