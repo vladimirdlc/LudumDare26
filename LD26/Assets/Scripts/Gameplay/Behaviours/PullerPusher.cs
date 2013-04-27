@@ -7,19 +7,20 @@ public class PullerPusher : MonoBehaviour
     public float applyForceInSeconds = 0.1f;
     public float power = 500.0f;
     public Transform basePosition;
-    public bool useMagnitude = true;
+    public bool isMagnitudeRelative = true;
+    public bool isPullingToCenter = false;
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.gameObject.name);
-
         if (currentElapsedTime >= applyForceInSeconds)
         {
             Vector3 pullVector;
 
-            pullVector = (basePosition.position - other.rigidbody.position).normalized;
+            if (isPullingToCenter) pullVector = (basePosition.position - other.rigidbody.position).normalized;
+            else pullVector = transform.forward;
 
-            other.rigidbody.AddForce(pullVector * power);
+            if (isMagnitudeRelative) other.rigidbody.AddForce(pullVector * power * other.transform.localScale.magnitude);
+            else other.rigidbody.AddForce(pullVector * power);
 
             currentElapsedTime = 0;
         }
