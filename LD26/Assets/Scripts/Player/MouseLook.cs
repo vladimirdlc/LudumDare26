@@ -4,6 +4,7 @@ using System.Collections;
 public class MouseLook : MonoBehaviour {
     Vector2 baseDirection, currentMouse, smoothMouse;
 	public float damping = 0.3f;
+    public float speed = 2.0f;
 		
 	void Start () {
 		baseDirection = transform.rotation.eulerAngles;
@@ -14,7 +15,7 @@ public class MouseLook : MonoBehaviour {
     }
 	
 	void Update () {
-		smoothMouse = Vector2.Lerp(smoothMouse, new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")), damping); 
+		smoothMouse = Vector2.Lerp(smoothMouse, new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"))*speed, damping); 
 		currentMouse += smoothMouse;
 		
 		transform.localRotation = Quaternion.AngleAxis(-currentMouse.y, Quaternion.Euler(baseDirection)*Vector3.right);
