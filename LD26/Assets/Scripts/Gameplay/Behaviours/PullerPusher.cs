@@ -11,6 +11,7 @@ public class PullerPusher : MonoBehaviour
     public bool isPullingToCenter = false;
     private bool isPassed = false;
     public static float speedBonus = 1;
+    public float maxVelocity = 2, maxVelocityPlayer = 1;
 
     void OnTriggerStay(Collider other)
     {
@@ -30,7 +31,14 @@ public class PullerPusher : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        other.rigidbody.velocity = Vector3.zero;
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            other.rigidbody.velocity = Vector3.ClampMagnitude(other.rigidbody.velocity, maxVelocityPlayer);
+        }
+        else
+        {
+            other.rigidbody.velocity = Vector3.ClampMagnitude(other.rigidbody.velocity, maxVelocity);
+        }
     }
 
     void FixedUpdate()
