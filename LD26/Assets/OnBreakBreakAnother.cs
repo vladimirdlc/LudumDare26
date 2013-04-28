@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class OnBreakBreakAnother : MonoBehaviour {
-    public GameObject target;
+    private GameObject target;
     public float decreaseScaleAmount = 30;
     public string targetName = "Coraza";
 
@@ -16,6 +16,7 @@ public class OnBreakBreakAnother : MonoBehaviour {
         if (target != null && !collision.gameObject.tag.Equals(gameObject.tag))
         {
             target.transform.localScale -= new Vector3(decreaseScaleAmount, decreaseScaleAmount, decreaseScaleAmount);
+            BonusGame.harsHater++;
             Destroy(gameObject);
         }
     }

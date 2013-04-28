@@ -20,6 +20,7 @@ public class Breakable : MonoBehaviour {
 
     public void breakObject()
     {
+        BonusGame.totalBroken++;
         Destroy(gameObject);
     }
 

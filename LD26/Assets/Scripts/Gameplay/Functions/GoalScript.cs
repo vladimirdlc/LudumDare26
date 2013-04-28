@@ -6,6 +6,7 @@ public class GoalScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        BonusGame.portalLover++;
         Application.LoadLevel(sceneToLoad);
     }
 }
