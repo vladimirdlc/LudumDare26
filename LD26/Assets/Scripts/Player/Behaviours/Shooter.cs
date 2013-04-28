@@ -14,6 +14,8 @@ public class Shooter : MonoBehaviour {
 	float shootPower;
 	
 	float noCharge = 0;
+
+    public AudioSource shootEffect;
 	
 	// Update is called once per frame
 	void Update () {
@@ -44,6 +46,7 @@ public class Shooter : MonoBehaviour {
 		isShooting = true;
 		GameObject clone = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
 		clone.rigidbody.AddForce(clone.transform.forward * firePower);
+        if(!shootEffect.isPlaying) shootEffect.Play();
 		yield return null;
 		isShooting = false;
 	}
