@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class BonusGame : MonoBehaviour {
+public class BonusGame : MonoBehaviour
+{
     public GameObject sun;
     public Camera secondCamera;
     public GameObject harsHaterGO;
@@ -22,13 +23,14 @@ public class BonusGame : MonoBehaviour {
             totalBrokenGO.transform.localScale.z);
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         if (sun == null && !isPaintedBlack)
         {
             isPaintedBlack = true;
             Camera.main.backgroundColor = Color.black;
             secondCamera.backgroundColor = Color.black;
         }
-	}
+    }
 }
