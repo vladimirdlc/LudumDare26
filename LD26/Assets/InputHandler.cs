@@ -25,5 +25,10 @@ public class InputHandler : MonoBehaviour {
             GetComponent<MouseLook>().speed--;
         }
 
+        if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            GetComponent<MouseLook>().speed--;
+        }
+
 	}
 }
