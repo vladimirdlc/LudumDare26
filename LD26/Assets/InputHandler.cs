@@ -15,5 +15,15 @@ public class InputHandler : MonoBehaviour {
             Application.Quit();
         }
 
+        if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            GetComponent<MouseLook>().speed++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            GetComponent<MouseLook>().speed--;
+        }
+
 	}
 }
