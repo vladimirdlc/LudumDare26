@@ -30,5 +30,14 @@ public class InputHandler : MonoBehaviour {
             GetComponent<MouseLook>().speed--;
         }
 
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PullerPusher.speedBonus += 50f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            PullerPusher.speedBonus -= 50f;
+        }
 	}
 }

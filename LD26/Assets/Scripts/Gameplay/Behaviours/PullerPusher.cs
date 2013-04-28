@@ -10,6 +10,7 @@ public class PullerPusher : MonoBehaviour
     public bool isMagnitudeRelative = true;
     public bool isPullingToCenter = false;
     private bool isPassed = false;
+    public static float speedBonus = 1;
 
     void OnTriggerStay(Collider other)
     {
@@ -20,7 +21,7 @@ public class PullerPusher : MonoBehaviour
             if (isPullingToCenter) pullVector = (basePosition.position - other.rigidbody.position).normalized;
             else pullVector = transform.forward;
 
-            if (isMagnitudeRelative) other.rigidbody.AddForce(pullVector * power * other.transform.localScale.magnitude);
+            if (isMagnitudeRelative) other.rigidbody.AddForce(pullVector * power * other.transform.localScale.magnitude * speedBonus);
             else other.rigidbody.AddForce(pullVector * power);
 
             currentElapsedTime = 0;
